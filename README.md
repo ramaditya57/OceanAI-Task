@@ -1,151 +1,145 @@
-AI-Assisted Document Authoring & Generation Platform
+# AI-Assisted Document Authoring & Generation Platform
 
-A full-stack web application that uses Artificial Intelligence to generate, refine, and export professional business documents. Users can create Word Documents (.docx) and PowerPoint Presentations (.pptx) by simply providing a topic and an outline.
+A full-stack web application that uses Artificial Intelligence to generate, refine, and export professional business documents. Users can create Word documents (.docx) and PowerPoint presentations (.pptx) by simply providing a topic and an outline.
 
-🚀 Features
+---
 
-User Authentication: Secure Login and Registration using JWT (JSON Web Tokens).
+## 🚀 Features
 
-Project Management: Dashboard to view and manage existing document projects.
+- **User Authentication**: Secure login and registration using JWT.
+- **Project Management**: View and manage document projects.
+- **AI Content Generation**: Generates detailed content using Groq (Llama-3).
+- **Interactive Editor**:  
+  - Manual editing  
+  - AI refinement: *Shorten, Expand, Make Formal*  
+  - Notes and feedback system
+- **Export**: Download formatted `.docx` or `.pptx` files.
+- **Responsive UI**: Clean, modern design for all devices.
 
-AI Content Generation: Generates detailed content for each section/slide using Groq (Llama-3).
+---
 
-Interactive Editor:
+## 🛠️ Tech Stack
 
-Manual Editing: Edit generated text directly.
+### Backend
+- Python  
+- FastAPI  
+- PostgreSQL  
+- SQLAlchemy  
 
-AI Refinement: Ask AI to "Shorten", "Make Formal", or "Expand" specific sections.
+### AI Engine
+- LangChain  
+- Groq API (Llama-3)
 
-Feedback System: Like/Dislike generations.
+### Frontend
+- HTML5  
+- CSS3  
+- JavaScript (Vanilla)
 
-Notes: Add private notes to sections.
+### Document Processing
+- python-docx  
+- python-pptx  
 
-Export: Download the final result as a formatted .docx or .pptx file.
+### Authentication
+- python-jose  
+- passlib  
+- bcrypt  
 
-Responsive UI: Modern, clean interface that works on desktop and mobile.
+---
 
-🛠️ Tech Stack
+## 📋 Prerequisites
 
-Backend: Python, FastAPI
+Make sure you have:
 
-Database: PostgreSQL, SQLAlchemy
+- Python **3.8+**
+- PostgreSQL (service running)
+- Groq API Key (create one at: https://console.groq.com)
 
-AI Engine: LangChain, Groq API (Llama-3 model)
+---
 
-Frontend: HTML5, CSS3, JavaScript (Vanilla)
+## ⚙️ Installation & Setup
 
-Document Processing: python-docx, python-pptx
+### 1. Clone the Repository
+Download or clone the repo to your system.
 
-Authentication: python-jose, passlib, bcrypt
+### 2. Create a Virtual Environment
 
-📋 Prerequisites
-
-Before running the project, ensure you have the following installed:
-
-Python 3.8+
-
-PostgreSQL (Make sure the service is running)
-
-Groq API Key (Get one for free at console.groq.com)
-
-⚙️ Installation & Setup
-
-1. Clone the Repository
-
-Download the project files to your local machine.
-
-2. Create a Virtual Environment
-
-It is recommended to use a virtual environment to manage dependencies.
-
-# Windows
+**Windows**
+```bash
 python -m venv venv
 .\venv\Scripts\activate
+```
 
-# Mac/Linux
+**Mac/Linux**
+```bash
 python3 -m venv venv
 source venv/bin/activate
+```
 
-
-3. Install Dependencies
-
-Install all required Python packages from the requirements.txt file.
-
+### 3. Install Dependencies
+```bash
 pip install -r requirements.txt
+```
 
+### 4. Database Configuration
 
-4. Database Configuration
+Open PostgreSQL (via terminal, pgAdmin, DBeaver, etc)
 
-You need to create a database in PostgreSQL for the application.
-
-Open your terminal or a tool like pgAdmin / DBeaver.
-
-Log in to PostgreSQL: psql -U postgres
-
-Run the following SQL command:
-
+```sql
 CREATE DATABASE ai_docs_db;
+```
 
 
-5. Configure Environment Variables
+---
 
-Create a file named .env in the root directory and add the following configuration.
+## 🚀 Running the Application
 
-Note: Update the DATABASE_URL with your specific PostgreSQL password.
+Activate your virtual environment and start FastAPI:
 
-
-🚀 Running the Application
-
-Ensure your virtual environment is activated.
-
-Start the FastAPI server using uvicorn.
-
+```bash
 python -m uvicorn main:app --reload
+```
 
+The backend runs at:
 
-The application will start at: http://127.0.0.1:8000
+```
+http://127.0.0.1:8000
+```
 
-The backend will automatically create the necessary database tables (users, projects, sections) on the first run.
+Frontend:
 
-📖 How to Use
+```
+http://127.0.0.1:8000/static/index.html
+```
 
-Access the App: Open your browser and go to http://127.0.0.1:8000/static/index.html.
+---
 
-Register: Click "Need an account? Register" to create a new user.
+## 📖 How to Use
 
-Login: Use your new credentials to log in.
+1. Open the web app in your browser.
+2. Register → Login.
+3. Create a new project:
+   - Enter topic (example: *AI in Healthcare*)
+   - Select format (*Word* / *PowerPoint*)
+   - Enter section headers (comma-separated)
+4. Generate AI content.
+5. Edit, refine, add notes.
+6. Export the final document.
 
-Create Project:
+---
 
-Enter a Topic (e.g., "AI in Healthcare").
+## 📂 Project Structure
 
-Select Format (Word or PowerPoint).
-
-Enter Section Headers separated by commas (e.g., "Intro, Benefits, Challenges, Conclusion").
-
-Click Generate AI Content.
-
-Edit & Refine:
-
-Click on a section to view the content.
-
-Use the "AI Refine" button to ask the AI to change the text.
-
-Switch to the "Notes" tab to save private notes.
-
-Export: Click the Download File button at the top right to get your .docx or .pptx file.
-
-📂 Project Structure
-
-├── main.py              # Main FastAPI application & API endpoints
-├── database.py          # Database connection & SQLAlchemy Models
-├── auth.py              # Authentication logic (Password hashing, JWT)
-├── ai_engine.py         # Logic for interacting with Groq LLM
-├── doc_engine.py        # Logic for creating Word/PPT files
-├── requirements.txt     # List of dependencies
-├── .env                 # Environment variables (Sensitive data)
-├── generated_docs/      # Folder where exported files are saved temp
-└── static/              # Frontend Files
-    ├── index.html       # Main User Interface
-    ├── style.css        # Styling
-    └── script.js        # Frontend Logic & API calls
+```
+├── main.py              # FastAPI main application
+├── database.py          # DB models and connection
+├── auth.py              # Authentication (JWT, hashing)
+├── ai_engine.py         # Groq LLM content generation
+├── doc_engine.py        # DOCX/PPTX file generation
+├── requirements.txt     # Dependencies
+├── .env                 # Environment variables (private)
+├── generated_docs/      # Temporary exported documents
+└── static/              # Frontend files
+    ├── index.html
+    ├── style.css
+    └── script.js
+```
