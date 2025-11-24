@@ -136,7 +136,6 @@ http://127.0.0.1:8000/static/index.html
 ├── ai_engine.py         # Groq LLM content generation
 ├── doc_engine.py        # DOCX/PPTX file generation
 ├── requirements.txt     # Dependencies
-├── .env                 # Environment variables (private)
 ├── generated_docs/      # Temporary exported documents
 └── static/              # Frontend files
     ├── index.html
