@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+python-dotenv
+langchain-groq
+python-docx
+python-pptx
+python-multipart
+passlib[bcrypt]
+bcrypt
+python-jose

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Doc Gen</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- AUTH SECTION -->
+    <div id="auth-container">
+        <h2 id="auth-title">Welcome Back</h2>
+        <p style="color:#666; margin-bottom:20px;">Please login to continue</p>
+        
+        <form onsubmit="handleAuthSubmit(event)">
+            <input type="text" id="username" placeholder="Username" autocomplete="username" required>
+            <input type="password" id="password" placeholder="Password" autocomplete="current-password" required>
+            
+            <button type="submit" id="login-btn">Login</button>
+            <button type="button" onclick="handleRegister()" id="register-btn" class="export-btn" style="display:none;">Register New Account</button>
+        </form>
+        
+        <div style="margin-top:20px; padding-top:15px; border-top:1px solid #eee;">
+            <a href="#" onclick="toggleAuthMode()" id="toggle-auth">Need an account? Register</a>
+        </div>
+    </div>
+
+    <!-- MAIN APP -->
+    <div id="app-container" class="container hidden">
+        <div style="margin-bottom: 20px; overflow: auto;">
+            <span onclick="logout()" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</span>
+        </div>
+        <h1>AI Document Generator</h1>
+
+        <!-- STEP 1: Create Project -->
+        <div id="create-step">
+            <div style="background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 25px;">
+                <h2 style="margin-top:0;">1. Start New Project</h2>
+                
+                <label for="projTitle" style="font-weight:500;">Topic</label>
+                <input type="text" id="projTitle" placeholder="E.g. The Future of Renewable Energy">
+                
+                <label for="projType" style="font-weight:500;">Format</label>
+                <select id="projType">
+                    <option value="docx">Word Document (.docx)</option>
+                    <option value="pptx">PowerPoint (.pptx)</option>
+                </select>
+                
+                <label for="projSections" style="font-weight:500;">Outline</label>
+                <textarea id="projSections" placeholder="List your sections here, separated by commas...&#10;Example: Introduction, Market Analysis, Competitive Landscape, Conclusion"></textarea>
+                
+                <button onclick="createProject()" style="width:100%; margin-top:10px;">
+                    <i class="fas fa-magic"></i> Generate AI Content
+                </button>
+                <p id="loadingMsg" style="display:none; color:var(--primary-color); text-align:center; font-weight:bold; margin-top:15px;">
+                    <i class="fas fa-spinner fa-spin"></i> AI is thinking... this may take 30 seconds...
+                </p>
+            </div>
+
+            <!-- Existing Projects List -->
+            <div style="border-top: 2px dashed #e5e7eb; padding-top: 20px;">
+                <button onclick="loadMyProjects()" style="background:transparent; color:#6b7280; border:1px solid #d1d5db; width:auto;">
+                    <i class="far fa-folder-open"></i> Load Existing Projects
+                </button>
+                <div id="project-list" style="margin-top:15px; display:grid; gap:10px;"></div>
+            </div>
+        </div>
+
+        <!-- STEP 2: Editor Interface -->
+        <div id="editor-step" style="display:none;">
+            <!-- Header Row -->
+            <div class="header-row">
+                <button onclick="location.reload()" style="background:#64748b; color:white; width:auto;">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2 id="displayTitle">Project Title</h2>
+                <button class="export-btn" onclick="exportDoc()" style="width:auto;">
+                    <i class="fas fa-download"></i> Download File
+                </button>
+            </div>
+            
+            <!-- Dynamic Sections -->
+            <div id="sections-container">
+                <!-- Content injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="script.js"></script>
+    <script>
+        function handleAuthSubmit(e) {
+            e.preventDefault();
+            const loginBtn = document.getElementById('login-btn');
+            if (loginBtn.style.display !== 'none') handleLogin();
+            else handleRegister();
+        }
+    </script>
+</body>
+</html>

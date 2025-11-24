@@ -1,0 +1,299 @@
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --bg-color: #f3f4f6;
+    --card-bg: #ffffff;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+    --radius: 8px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    padding: 20px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* --- Layout Containers --- */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1, h2 {
+    color: #111827;
+    margin-top: 0;
+}
+
+h1 { font-size: 1.75rem; margin-bottom: 1.5rem; text-align: center; }
+h2 { font-size: 1.25rem; margin-bottom: 1rem; }
+
+/* --- Forms & Inputs --- */
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: border-color 0.2s;
+    font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* --- Buttons --- */
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s, transform 0.1s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.export-btn {
+    background-color: var(--success-color);
+}
+.export-btn:hover { background-color: #059669; }
+
+.logout-link {
+    float: right;
+    color: var(--danger-color);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.logout-link:hover { text-decoration: underline; }
+
+/* --- Auth Section --- */
+#auth-container {
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 40px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+#auth-container button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#toggle-auth {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* --- Section Blocks (The Editor Cards) --- */
+.section-block {
+    border: 1px solid var(--border-color);
+    background: #fff;
+    margin-bottom: 24px;
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.section-header {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- Tabs inside Sections --- */
+.tab-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--bg-color);
+    padding-bottom: 8px;
+}
+
+.tab-btn {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    border-radius: 20px; /* Pill shape */
+}
+
+.tab-btn:hover {
+    background: var(--bg-color);
+    color: var(--text-main);
+}
+
+.tab-btn.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* --- Editor & AI Tools --- */
+.editor-area textarea {
+    min-height: 150px;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.ai-tools {
+    background: #eff6ff;
+    padding: 16px;
+    margin-top: 12px;
+    border-radius: var(--radius);
+    border: 1px solid #dbeafe;
+    display: none;
+}
+.ai-tools.visible { display: block; }
+
+.preview-box {
+    background: #fffbeb;
+    padding: 16px;
+    margin-top: 12px;
+    border: 1px solid #fcd34d;
+    border-radius: var(--radius);
+    display: none;
+}
+
+.notes-area { display: none; }
+.notes-area.visible { display: block; }
+
+/* --- Feedback Icons --- */
+.feedback-area {
+    display: flex;
+    gap: 8px;
+}
+
+.like-btn, .dislike-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.like-btn:hover, .dislike-btn:hover {
+    background: var(--bg-color);
+}
+
+.like-btn.selected { color: var(--success-color); border-color: var(--success-color); background: #ecfdf5; }
+.dislike-btn.selected { color: var(--danger-color); border-color: var(--danger-color); background: #fef2f2; }
+
+/* --- Step 2 Header (Back/Title/Export) --- */
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 15px;
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+}
+
+#displayTitle {
+    font-size: 1.2rem;
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 768px) {
+    body { padding: 10px; }
+    
+    .container { padding: 15px; }
+
+    /* Stack the header row on mobile */
+    .header-row {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    #displayTitle {
+        order: -1; /* Title on top */
+        margin-bottom: 10px;
+        white-space: normal;
+    }
+
+    .header-row button {
+        width: 100%;
+    }
+
+    /* Stack buttons in AI tools */
+    .ai-tools div[style*="flex"] {
+        flex-direction: column;
+    }
+    
+    .ai-tools button {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+    /* Make feedback buttons smaller on mobile */
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .feedback-area {
+        align-self: flex-end;
+    }
+}
