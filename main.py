@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, RedirectResponse # Added RedirectResponse
 from sqlalchemy.orm import Session, joinedload
 from pydantic import BaseModel
 from typing import List, Optional
@@ -17,6 +17,12 @@ app = FastAPI()
 
 # Mount the static folder to serve HTML/JS directly
 app.mount("/static", StaticFiles(directory="static", html=True), name="static")
+
+# --- FIX: Redirect Root URL to Index HTML ---
+@app.get("/")
+def read_root():
+    return RedirectResponse(url="/static/index.html")
+# --------------------------------------------
 
 # Security Scheme
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
@@ -138,20 +144,6 @@ def get_project(project_id: int,
         raise HTTPException(status_code=403, detail="Not authorized to view this project")
         
     return project
-
-# @app.post("/refine/")
-# def refine_content(request: RefineRequest, db: Session = Depends(get_db)):
-#     section = db.query(Section).filter(Section.id == request.section_id).first()
-#     if not section:
-#         raise HTTPException(status_code=404, detail="Section not found")
-    
-#     # Call AI
-#     new_content = ai_engine.refine_section_text(section.content, request.instruction)
-    
-#     # Update DB
-#     section.content = new_content
-#     db.commit()
-#     return {"section_id": section.id, "new_content": new_content}
 
 # --- Refinement & Updates ---
 
