@@ -88,7 +88,6 @@ Open PostgreSQL (via terminal, pgAdmin, DBeaver, etc)
 CREATE DATABASE ai_docs_db;
 ```
 
-
 ---
 
 ## 🚀 Running the Application
