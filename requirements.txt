@@ -8,5 +8,5 @@ python-docx
 python-pptx
 python-multipart
 passlib[bcrypt]
-bcrypt
+bcrypt==3.2.2
 python-jose
